@@ -2,10 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose")
 const cors = require("cors")
 
-const blogRouter = require("./route/blog-router")
-const commentRouter = require("./route/comment-router")
-const questionRouter = require("./route/question-router")
-const userRouter = require("./route/user-router")
+const routeFolder = "route-demo"
+
+const blogRouter = require(`./${routeFolder}/blog-router`)
+const commentRouter = require(`./${routeFolder}/comment-router`)
+const questionRouter = require(`./${routeFolder}/question-router`)
+const userRouter = require(`./${routeFolder}/user-router`)
 
 mongoose.connect("mongodb://localhost/fanos")
 const db = mongoose.connection
