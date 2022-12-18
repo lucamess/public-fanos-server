@@ -12,3 +12,5 @@ router.post("/get-by-question-id", (req, res) => {
 router.post("/add", (req, res) => {
 	res.json({ success: true, })
 })
+
+module.exports = router

@@ -6,3 +6,5 @@ router.post("/register", (req, res) => {
 	res.json({ success: true, })
 })
 
+module.exports = router
+
