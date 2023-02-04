@@ -1,6 +1,5 @@
 const comment = require("../model/comment-schema")
 const router = require("express").Router();
-const { extractErrorMessages } = require("../utils")
 
 router.post("/get-by-question-id", (req, res) => {
 	const { questionId, page, limit } = req.body
@@ -31,7 +30,7 @@ router.post("/add", async (req, res, next) => {
         
     } catch (error) {
 		next({
-			message: extractErrorMessages(error.errors)
+			message: error.message
 		})
     }
 

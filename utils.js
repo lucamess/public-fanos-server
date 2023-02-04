@@ -12,16 +12,20 @@ const getByText = (schema, searchText, page, limit) => {
 		})
 }
 
+const getById = (schema, id) => {
+	return schema.findOne({ _id: id })
+}
+
 const getAll = (schema, page, limit) => {
 	return schema.paginate({}, { page, limit })
 		.then(data => {
-			console.log(data)
 			return data.docs
 		})
 }
 
 const checkUserIsTeam = async (userSchema, user) => {
 	const checkedUser = await userSchema.findOne({ email: user.email })
+	console.log("checkUserIsTeam", checkedUser, checkedUser["type"])
 	
 	return Boolean(checkedUser?.type == "team")
 }
@@ -32,7 +36,7 @@ const checkUserExists = async(userSchema, user) => {
 	return Boolean(checkedUser)
 }
 
-const extractErrorMessages = errors => {
+const extractErrorList = errors => {
 	const errorMessages = []
 	Object.keys(errors).map(key => {
 		errorMessages.push(errors[key].message)
@@ -45,7 +49,8 @@ module.exports = {
 	removeWordNoice,
 	getByText,
 	getAll,
+	getById,
 	checkUserIsTeam,
 	checkUserExists,
-	extractErrorMessages,
+	extractErrorList,
 }

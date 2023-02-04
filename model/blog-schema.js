@@ -23,8 +23,12 @@ const blogSchema = mongoose.Schema({
 		required: [true, "FIELD_MISSING"],
 	},
 	content: {
-		type: String,
-		required: [true, "FIELD_MISSING"],
+		am: {
+			type: String,
+		},
+		en: {
+			type: String,
+		}
 	},
 	date: {
 		type: Date,

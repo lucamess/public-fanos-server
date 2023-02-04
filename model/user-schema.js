@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
 		type: String,
 		required: [true, "FIELD_MISSING"],
 	},
+	type: {
+		type: String,
+		required: [true, "FIELD_MISSING"],
+	},
 })
 
 module.exports = mongoose.model("User", userSchema)

@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose")
 const cors = require("cors")
 
-const routeFolder = "route-demo"
+const routeFolder = "route"
 
 const blogRouter = require(`./${routeFolder}/blog-router`)
 const commentRouter = require(`./${routeFolder}/comment-router`)
@@ -28,6 +28,7 @@ app.use((err, req, res, next) => {
 	res.json({
 		success: false,
 		message: err.message,
+		errorList: err.errorList,
 	})
 })
 

@@ -1,9 +1,21 @@
 const express = require("express")
 const blog = require("../model/blog-schema")
-const { removeWordNoice, getAll, getByText, extractErrorMessages } = require("../utils.js")
+const { removeWordNoice, getAll, getByText, getById, extractErrorList } = require("../utils.js")
 
 const router = express.Router()
 
+router.post("/get-by-id", (req, res) => {
+	const { id } = req.body
+	getById(blog, id)
+		.then(data => {
+			console.log("blog/get-by-id", data)
+			res.json({
+				success: true,
+				results: data,
+			})
+		})
+
+})
 
 router.post("/get-by-text", (req, res) => {
 	const { searchText, page, limit } = req.body
@@ -40,49 +52,15 @@ router.post("/add", async (req, res, next) => {
         res.json({ success: true })
         
     } catch (error) {
+		console.log("[-] error in blog/add", error.message, req.body)
 		next({
-			message: extractErrorMessages(error.errors)
+			message: error.message,
+			errorList: extractErrorList(error.errors)
 		})
     }
 });
 
 
 module.exports = router
-
-/*
-router.route("/update/:id").post((req, res) => {
-    try {
-        blog.findById(req.params.id)
-            .then(async updateblog => {
-                    updateblog.blogtitle = req.body.blogtitle,
-                    updateblog.blogcontent = req.body.blogcontent,
-                    updateblog.blogwriter = req.body.blogwriter,
-                
-            
-                await updateblog.save()
-                    .then(result => res.json({updated: result}))  
-                    .catch((err) => res.json({msg: err.message}))
-            })
-        
-    } catch (error) {
-		console.log(error)
-    }
-});
-
-router.route("/delete/:id").post((req, res) => {
-    try {
-        blog.findByIdAndDelete(req.params.id)
-            .then(() => {
-				res.json({
-					success: true,
-				})
-			})
-        
-    } catch (error) {
-		console.log(error)
-    }
-});
-
-*/
 
 

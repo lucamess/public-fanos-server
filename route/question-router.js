@@ -1,6 +1,6 @@
 const question = require("../model/question-schema")
 const router = require("express").Router()
-const { removeWordNoice, getAll, getByText, extractErrorMessages } = require("../utils.js")
+const { removeWordNoice, getAll, getByText, } = require("../utils.js")
 
 
 router.post("/get-by-text", (req, res) => {
@@ -37,7 +37,7 @@ router.post("/add", async (req, res, next) => {
         
     } catch (error) {
 		next({
-			message: extractErrorMessages(error.errors)
+			message: error.message
 		})
     }
 })
