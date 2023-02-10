@@ -26,9 +26,13 @@ const commentSchema = mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
-	content:  {
-		type: String,
-		required: [true, "FIELD_MISSING"],
+	content: {
+		am: {
+			type: String,
+		},
+		en: {
+			type: String,
+		}
 	},
 })
 

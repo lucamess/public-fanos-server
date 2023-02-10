@@ -1,7 +1,19 @@
 const question = require("../model/question-schema")
 const router = require("express").Router()
-const { removeWordNoice, getAll, getByText, } = require("../utils.js")
+const { removeWordNoice, getAll, getById, getByText, } = require("../utils.js")
 
+
+router.post("/get-by-id", (req, res) => {
+	const { id } = req.body
+	getById(question, id)
+		.then(data => {
+			res.json({
+				success: true,
+				results: data,
+			})
+		})
+
+})
 
 router.post("/get-by-text", (req, res) => {
 	const { searchText, page, limit } = req.body
@@ -25,11 +37,11 @@ router.post("/get-by-text", (req, res) => {
 });
 
 router.post("/add", async (req, res, next) => {
-	const { user, title, content, date } = req.body
+	const { user, title, content, date, tag } = req.body
 
     try {
         const newBlog = new question({
-			user, title, content, date
+			user, title, content, date, tag
         })
 
         await newBlog.save()

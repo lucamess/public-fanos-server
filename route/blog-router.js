@@ -8,7 +8,6 @@ router.post("/get-by-id", (req, res) => {
 	const { id } = req.body
 	getById(blog, id)
 		.then(data => {
-			console.log("blog/get-by-id", data)
 			res.json({
 				success: true,
 				results: data,

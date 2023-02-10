@@ -19,13 +19,21 @@ const questionSchema = mongoose.Schema({
 		},
 	},
 	title: {
-			type: String,
-			required: [true, "FIELD_MISSING"],
-		},
+		type: String,
+		required: [true, "FIELD_MISSING"],
+	},
 	content: {
+		am: {
 			type: String,
-			required: [true, "FIELD_MISSING"],
 		},
+		en: {
+			type: String,
+		}
+	},
+	tag: {
+		type: String,
+		required: [true, "FIELD_MISSING"],
+	},
 	date: {
 		type: Date,
 		default: Date.now,
