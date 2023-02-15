@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose")
 const cors = require("cors")
 
-const routeFolder = "route"
+const routeFolder = "route-demo"
 
 const blogRouter = require(`./${routeFolder}/blog-router`)
 const commentRouter = require(`./${routeFolder}/comment-router`)

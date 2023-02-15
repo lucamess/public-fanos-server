@@ -19,8 +19,12 @@ const blogSchema = mongoose.Schema({
 		},
 	},
     title: {
-		type: String,
-		required: [true, "FIELD_MISSING"],
+		am: {
+			type: String,
+		},
+		en: {
+			type: String,
+		}
 	},
 	content: {
 		am: {

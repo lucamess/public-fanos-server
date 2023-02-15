@@ -45,6 +45,40 @@ const extractErrorList = errors => {
 	return errorMessages
 }
 
+const getAndMergeKey = (key, obj) => {
+	if(Boolean(obj[key]) == false)
+		return ""
+
+	return obj[key]["am"] + " " + obj[key]["en"]
+}
+
+const doesTextExist = (content, searchText) => {
+	let doesExist = false
+
+	searchText.split(" ").forEach(keyword => {
+		if(content.indexOf(keyword) != -1)
+			doesExist = true
+	})
+
+	return doesExist
+}
+
+const getItemByTextJson = (arr, searchText) => {
+	const results = []
+
+	arr.forEach(item => {
+		const text = getAndMergeKey("title", item) + " " + getAndMergeKey("content", item)
+		if(doesTextExist(text, searchText))
+			results.push(item)
+	})
+
+	return results
+}
+
+const getItemByIdJson = (arr, id) => {
+	return arr.filter(item => item._id == id)[0]
+}
+
 module.exports = {
 	removeWordNoice,
 	getByText,
@@ -53,4 +87,6 @@ module.exports = {
 	checkUserIsTeam,
 	checkUserExists,
 	extractErrorList,
+	getItemByTextJson,
+	getItemByIdJson,
 }
