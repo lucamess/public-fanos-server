@@ -9,11 +9,11 @@ const commentRouter = require(`./${routeFolder}/comment-router`)
 const questionRouter = require(`./${routeFolder}/question-router`)
 const userRouter = require(`./${routeFolder}/user-router`)
 
-mongoose.connect("mongodb://localhost/fanos")
-const db = mongoose.connection
-db.once("open", () => {
-    console.log("connected to DB")
-})
+// mongoose.connect("mongodb://localhost/fanos")
+// const db = mongoose.connection
+// db.once("open", () => {
+//     console.log("connected to DB")
+// })
 
 const app = express()
 app.use(express.json())
